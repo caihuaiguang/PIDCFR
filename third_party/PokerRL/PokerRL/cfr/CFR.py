@@ -68,7 +68,7 @@ class CFR(_CFRBase):
                 contrib = _node.strategy * np.expand_dims(
                     _node.reach_probs[p_id], axis=1
                 )
-                if self._iter_counter > 0:
+                if self._iter_counter > 0 and self.is_last is False:
                     _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib

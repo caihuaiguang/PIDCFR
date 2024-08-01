@@ -5,18 +5,21 @@ import numpy as np
 from PokerRL.cfr._CFRBase import CFRBase as _CFRBase
 
 
-class DCFRPlus(_CFRBase):
+class PIDCFR(_CFRBase):
     def __init__(
         self,
         name,
         chief_handle,
         game_cls,
         agent_bet_set,
-        starting_stack_sizes=None,
         other_agent_bet_set=None,
-        alpha=1.5,
-        gamma=2,
+        starting_stack_sizes=None,
+        delay=0,
     ):
+        """
+        delay (int):                            Linear Averaging delay of CFR+ (only applicable if ""cfr_plus"" is
+                                                True)
+        """
         super().__init__(
             name=name,
             chief_handle=chief_handle,
@@ -24,28 +27,23 @@ class DCFRPlus(_CFRBase):
             starting_stack_sizes=starting_stack_sizes,
             agent_bet_set=agent_bet_set,
             other_agent_bet_set=other_agent_bet_set,
-            algo_name="DuelingCFR",
+            algo_name="CFRp_delay" + str(delay),
         )
+
+        self.delay = delay
         self.reset()
-        self.alpha = alpha
-        self.gamma = gamma
+
+    def _evaluate_avg_strats(self):
+        if self._iter_counter > self.delay:
+            return super()._evaluate_avg_strats()
 
     def _regret_formula_after_first_it(self, ev_all_actions, strat_ev, last_regrets):
-        imm_regrets = ev_all_actions - strat_ev
-        regrets = last_regrets
-        T = self._iter_counter + 1
-
-        regrets = np.maximum(
-            regrets
-            * np.power(T - 1, self.alpha)
-            / (np.power(T - 1, self.alpha) + 1.5)
-            + imm_regrets,
-            0,
-        )
-        return regrets
+        return np.maximum(ev_all_actions - strat_ev + last_regrets, 0)
 
     def _regret_formula_first_it(self, ev_all_actions, strat_ev):
-        return ev_all_actions - strat_ev
+        return np.maximum(
+            ev_all_actions - strat_ev, 0
+        )  # not max of axis; this is like relu
 
     def _compute_new_strategy(self, p_id):
         for t_idx in range(len(self._trees)):
@@ -53,15 +51,22 @@ class DCFRPlus(_CFRBase):
             def _fill(_node):
                 if _node.p_id_acting_next == p_id:
                     N = len(_node.children)
-                    _capped_reg = np.maximum(_node.data["regret"], 0)
-                    _reg_pos_sum = np.expand_dims(
-                        np.sum(_capped_reg, axis=1), axis=1
-                    ).repeat(N, axis=1)
+                    if _node.data["pre_imm_regret"] is None:
+                        _reg = 1.1* np.maximum(_node.data["imm_regret"], 0) +\
+                            _node.data["regret"] +\
+                            0.2*np.maximum(_node.data["imm_regret"], 0)
+                    else:
+                        _reg = 1.1* np.maximum(_node.data["imm_regret"], 0) +\
+                                _node.data["regret"] +\
+                                0.2*np.maximum(_node.data["imm_regret"] - _node.data["pre_imm_regret"], 0)
+                    _reg_sum = np.expand_dims(np.sum(_reg, axis=1), axis=1).repeat(
+                        N, axis=1
+                    )
 
                     with np.errstate(divide="ignore", invalid="ignore"):
                         _node.strategy = np.where(
-                            _reg_pos_sum > 0.0,
-                            _capped_reg / _reg_pos_sum,
+                            _reg_sum > 0.0,
+                            _reg / _reg_sum,
                             np.full(
                                 shape=(
                                     self._env_bldrs[t_idx].rules.RANGE_SIZE,
@@ -71,6 +76,7 @@ class DCFRPlus(_CFRBase):
                                 dtype=np.float32,
                             ),
                         )
+
                 for c in _node.children:
                     _fill(c)
 
@@ -79,15 +85,27 @@ class DCFRPlus(_CFRBase):
     def _add_strategy_to_average(self, p_id):
         def _fill(_node):
             if _node.p_id_acting_next == p_id:
-                T = self._iter_counter + 1
-                contrib = _node.strategy * np.expand_dims(
-                    _node.reach_probs[p_id], axis=1
+                # if self._iter_counter > self.delay:
+                #     current_weight = np.sum(np.arange(self.delay + 1, self._iter_counter + 1))
+                #     new_weight = self._iter_counter - self.delay + 1
+
+                #     m_old = current_weight / (current_weight + new_weight)
+                #     m_new = new_weight / (current_weight + new_weight)
+                #     _node.data["avg_strat"] = m_old * _node.data["avg_strat"] + m_new * _node.strategy
+
+                #     assert np.allclose(np.sum(_node.data["avg_strat"], axis=1), 1, atol=0.0001)
+
+                # elif self._iter_counter == self.delay:
+                #     _node.data["avg_strat"] = np.copy(_node.strategy)
+
+                #     assert np.allclose(np.sum(_node.data["avg_strat"], axis=1), 1, atol=0.0001)
+                contrib = (
+                    _node.strategy
+                    * np.expand_dims(_node.reach_probs[p_id], axis=1)
+                    * (self._iter_counter + 1)
                 )
                 if self._iter_counter > 0 and self.is_last is False:
-                    _node.data["avg_strat_sum"] = (
-                        _node.data["avg_strat_sum"] * np.power((T - 1) / T, self.gamma)
-                        + contrib
-                    )
+                    _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib
 

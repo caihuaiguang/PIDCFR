@@ -111,7 +111,7 @@ class SolverBase:
             self.game,
             policy.tabular_policy_from_callable(self.game, self.average_policy()),
         )
-        exp = max(exp, 1e-12)
+        # exp = max(exp, 1e-18)
         return exp
 
     def average_policy(self):

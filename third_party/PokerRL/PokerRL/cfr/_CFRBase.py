@@ -40,6 +40,7 @@ class CFRBase:
 
         self._name = name
         self._n_seats = 2
+        self.is_last = True
 
         self._chief_handle = chief_handle
 
@@ -212,6 +213,7 @@ class CFRBase:
                         strat_ev=strat_ev,
                         last_regrets=_node.data["regret"],
                     )
+                    _node.data["pre_imm_regret"] = copy.deepcopy(_node.data["imm_regret"])
                     _node.data["imm_regret"] = ev_all_actions - strat_ev
 
                 for c in _node.children:
@@ -225,6 +227,7 @@ class CFRBase:
                         ev_all_actions=ev_all_actions, strat_ev=strat_ev
                     )
                     _node.data["imm_regret"] = ev_all_actions - strat_ev
+                    _node.data["pre_imm_regret"] = None
 
                 for c in _node.children:
                     _fill_first(c)

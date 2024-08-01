@@ -16,6 +16,7 @@ flags.DEFINE_enum(
         "PDCFRPlus",
         "DCFRPlus",
         "PDCFR",
+        "PIDCFR",
     ],
     "name of the algorithm",
 )
@@ -49,7 +50,7 @@ def main(argv):
     ]
     for game_name in game_names:
         run_file = Path(__file__).absolute().parent / "run.py"
-        script = "python {} with game_name={} algo_name={} iterations=20000 save_log=True ".format(
+        script = "python {} with game_name={} algo_name={} iterations=2000 save_log=True ".format(
             run_file, game_name, algo_name
         )
         for param_name, param_value in param.items():

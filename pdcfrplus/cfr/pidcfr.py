@@ -1,14 +1,20 @@
 from pdcfrplus.cfr.cfr import CFR, CFRState
+import copy
+import numpy as np
 
+class PIDCFRState(CFRState):
+    def init_data(self):
+        super().init_data()
+        self.pre_imm_regrets = {a: 0 for a in self.legal_actions}
 
-class PCFRPlusState(CFRState):
     def update_regret(self):
         for a in self.legal_actions:
             self.regrets[a] = max(self.regrets[a] + self.imm_regrets[a], 0)
 
     def update_current_policy(self):
         self.pred_regrets = {
-            a: max(self.regrets[a] + self.imm_regrets[a], 0) for a in self.legal_actions
+            # a: max(self.regrets[a] + self.imm_regrets[a], 0) for a in self.legal_actions  (1 - 1 / np.exp(2))
+            a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] +  1 / np.exp(2) * (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
         }
         regret_sum = 0
         for regret in self.pred_regrets.values():
@@ -18,6 +24,7 @@ class PCFRPlusState(CFRState):
                 self.policy[a] = 1 / self.num_actions
             else:
                 self.policy[a] = max(0, regret) / regret_sum
+        self.pre_imm_regrets = copy.deepcopy(self.imm_regrets)
 
 
     # def cumulate_policy(self, T, gamma):
@@ -26,9 +33,9 @@ class PCFRPlusState(CFRState):
     #             self.cum_policy[a] = self.reach * p
     #             continue
     #         self.cum_policy[a] = self.reach * p
-class PCFRPlus(CFR):
+class PIDCFR(CFR):
     def __init__(self, game_config, logger=None, gamma=2):
         super().__init__(game_config, logger, gamma)
 
     def init_state(self, h):
-        return PCFRPlusState(h)
+        return PIDCFRState(h)

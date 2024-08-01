@@ -27,15 +27,18 @@ class CFRState(StateBase):
             else:
                 self.policy[a] = max(0, regret) / regret_sum
 
+    # def cumulate_policy(self, T, gamma):
+    #     for a, p in self.policy.items():
+    #         if T == 1:
+    #             self.cum_policy[a] = self.reach * p
+    #             continue
+    #         self.cum_policy[a] = (
+    #             self.cum_policy[a] * np.power((T - 1) / T, gamma) + self.reach * p
+    #         )
+
     def cumulate_policy(self, T, gamma):
         for a, p in self.policy.items():
-            if T == 1:
-                self.cum_policy[a] = self.reach * p
-                continue
-            self.cum_policy[a] = (
-                self.cum_policy[a] * np.power((T - 1) / T, gamma) + self.reach * p
-            )
-
+            self.cum_policy[a] = self.reach * p
     def clear_temp(self):
         for a in self.regrets.keys():
             self.imm_regrets_copy[a] = self.imm_regrets[a]

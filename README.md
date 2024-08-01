@@ -24,6 +24,12 @@ python scripts/parallel_run.py --algo PCFRPlus --gamma=2
 python scripts/parallel_run.py --algo PCFRPlus --gamma=5
 python scripts/parallel_run.py --algo DCFRPlus --gamma=4 --alpha=1.5
 python scripts/parallel_run.py --algo PDCFRPlus --gamma=5 --alpha=2.3
+
+python scripts/parallel_run.py --algo PIDCFR
+find results -type d -regex ".*/*/PIDCFR"  -exec rm -rf {} +
+python scripts/run.py with game_name="KuhnPoker" algo_name="PIDCFR" iterations=2000 save_log=True
+export PYTHONPATH=/home/caihuaiguang/DSG/pytorch-shapley-cam:$PYTHONPATH
+python scripts/draw.py 
 ```
 
 ## References

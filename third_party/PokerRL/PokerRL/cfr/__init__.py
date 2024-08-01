@@ -5,3 +5,4 @@ from .DCFRPlus import DCFRPlus
 from .LinearCFR import LinearCFR
 from .PCFRPlus import PCFRPlus
 from .PDCFRPlus import PDCFRPlus
+from .PIDCFR import PIDCFR
