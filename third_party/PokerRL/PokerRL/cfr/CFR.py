@@ -14,6 +14,7 @@ class CFR(_CFRBase):
         agent_bet_set,
         other_agent_bet_set=None,
         starting_stack_sizes=None,
+        average=True,
     ):
         super().__init__(
             name=name,
@@ -25,6 +26,7 @@ class CFR(_CFRBase):
             algo_name="CFR",
         )
         self.reset()
+        self.average = average
 
     def _regret_formula_after_first_it(self, ev_all_actions, strat_ev, last_regrets):
         return ev_all_actions - strat_ev + last_regrets
@@ -68,7 +70,7 @@ class CFR(_CFRBase):
                 contrib = _node.strategy * np.expand_dims(
                     _node.reach_probs[p_id], axis=1
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib

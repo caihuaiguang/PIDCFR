@@ -15,6 +15,7 @@ class CFRPlus(_CFRBase):
         other_agent_bet_set=None,
         starting_stack_sizes=None,
         delay=0,
+        average=True,
     ):
         """
         delay (int):                            Linear Averaging delay of CFR+ (only applicable if ""cfr_plus"" is
@@ -32,6 +33,7 @@ class CFRPlus(_CFRBase):
 
         self.delay = delay
         self.reset()
+        self.average = average
 
     def _evaluate_avg_strats(self):
         if self._iter_counter > self.delay:
@@ -98,7 +100,7 @@ class CFRPlus(_CFRBase):
                     * np.expand_dims(_node.reach_probs[p_id], axis=1)
                     * (self._iter_counter + 1)
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib

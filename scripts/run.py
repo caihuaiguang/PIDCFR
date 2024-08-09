@@ -19,6 +19,7 @@ def config():
     gamma = None
     alpha = None
     beta = None
+    average = True
 
     # logger
     writer_strings = ["stdout"]
@@ -32,7 +33,7 @@ def config():
 @ex.automain
 def main(_config, _run, folder, game_name, algo_name):
     configs = dict(_config)
-    for arg in ["gamma", "alpha", "beta"]:
+    for arg in ["gamma", "alpha", "beta", "average"]:
         if configs[arg] is None:
             del configs[arg]
     if configs["save_log"]:

@@ -7,7 +7,7 @@ with open(os.path.join(this_dir, "requirements.txt"), "r") as f:
     requirements = [line.strip() for line in f.readlines()]
 
 setup(
-    name="pdcfrplus",
+    name="pidcfr",
     version="1.0.0",
     description="PDCFR+: Minimizing Weighted Counterfactual Regret with Optimistic Online Mirror Descent",
     packages=find_packages(exclude=("tests*", "docs*", "examples*", "repos*")),

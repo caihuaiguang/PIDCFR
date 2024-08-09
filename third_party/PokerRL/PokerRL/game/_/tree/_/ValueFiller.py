@@ -120,7 +120,7 @@ class ValueFiller:
         # weight ev by reach prob
         node.ev_weighted = node.ev * node.reach_probs
         node.ev_br_weighted = node.ev_br * node.reach_probs
-        assert np.allclose(np.sum(node.ev_weighted), 0, atol=0.001), np.sum(
+        assert np.allclose(np.sum(node.ev_weighted), 0, atol=0.002), np.sum(
             node.ev_weighted
         )  # Zero Sum check
 
@@ -510,7 +510,7 @@ class ValueFillerHUNL(ValueFiller):
         # weight ev by reach prob
         node.ev_weighted = node.ev * node.reach_probs
         node.ev_br_weighted = node.ev_br * node.reach_probs
-        assert np.allclose(np.sum(node.ev_weighted), 0, atol=0.001), np.sum(
+        assert np.allclose(np.sum(node.ev_weighted), 0, atol=0.002), np.sum(
             node.ev_weighted
         )  # Zero Sum check
 

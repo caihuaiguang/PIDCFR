@@ -14,6 +14,7 @@ class LinearCFR(_CFRBase):
         agent_bet_set,
         starting_stack_sizes=None,
         other_agent_bet_set=None,
+        average=True,
     ):
         super().__init__(
             name=name,
@@ -25,6 +26,7 @@ class LinearCFR(_CFRBase):
             algo_name="LinCFR",
         )
         self.reset()
+        self.average = average
 
     def _regret_formula_after_first_it(self, ev_all_actions, strat_ev, last_regrets):
         return (self._iter_counter + 1) * (ev_all_actions - strat_ev) + last_regrets
@@ -69,7 +71,7 @@ class LinearCFR(_CFRBase):
                     * np.expand_dims(_node.reach_probs[p_id], axis=1)
                     * (self._iter_counter + 1)
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib

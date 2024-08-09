@@ -8,9 +8,8 @@ class LinearCFRState(CFRState):
 
 
 class LinearCFR(CFR):
-    def __init__(self, game_config, logger=None, gamma=1):
-        super().__init__(game_config, logger)
-        self.gamma = gamma
+    def __init__(self, game_config, logger=None, gamma=1, average = True):
+        super().__init__(game_config, logger, gamma=gamma, average=average)
 
     def init_state(self, h):
         return LinearCFRState(h)
@@ -18,6 +17,6 @@ class LinearCFR(CFR):
     def update_state(self, s):
         s.update_regret(self.num_iteration)
 
-        s.cumulate_policy(self.num_iteration, self.gamma)
+        s.cumulate_policy(self.num_iteration, self.gamma, self.average)
 
         s.update_current_policy()

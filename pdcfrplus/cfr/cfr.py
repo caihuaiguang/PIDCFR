@@ -27,18 +27,18 @@ class CFRState(StateBase):
             else:
                 self.policy[a] = max(0, regret) / regret_sum
 
-    # def cumulate_policy(self, T, gamma):
-    #     for a, p in self.policy.items():
-    #         if T == 1:
-    #             self.cum_policy[a] = self.reach * p
-    #             continue
-    #         self.cum_policy[a] = (
-    #             self.cum_policy[a] * np.power((T - 1) / T, gamma) + self.reach * p
-    #         )
-
-    def cumulate_policy(self, T, gamma):
-        for a, p in self.policy.items():
-            self.cum_policy[a] = self.reach * p
+    def cumulate_policy(self, T, gamma, average):
+        if average is True:
+            for a, p in self.policy.items():
+                if T == 1:
+                    self.cum_policy[a] = self.reach * p
+                    continue
+                self.cum_policy[a] = (
+                    self.cum_policy[a] * np.power((T - 1) / T, gamma) + self.reach * p
+                )
+        else:
+            for a, p in self.policy.items():
+                self.cum_policy[a] = self.reach * p
     def clear_temp(self):
         for a in self.regrets.keys():
             self.imm_regrets_copy[a] = self.imm_regrets[a]
@@ -47,9 +47,10 @@ class CFRState(StateBase):
 
 
 class CFR(SolverBase):
-    def __init__(self, game_config: GameConfig, logger: Logger = None, gamma: int = 0):
+    def __init__(self, game_config: GameConfig, logger: Logger = None, gamma: int = 0, average = True):
         super().__init__(game_config, logger)
         self.gamma = gamma
+        self.average = average
 
     def init_state(self, h):
         return CFRState(h)
@@ -127,6 +128,6 @@ class CFR(SolverBase):
     def update_state(self, s):
         s.update_regret()
 
-        s.cumulate_policy(self.num_iteration, self.gamma)
+        s.cumulate_policy(self.num_iteration, self.gamma, self.average)
  
         s.update_current_policy()

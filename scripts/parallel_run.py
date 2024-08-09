@@ -23,6 +23,7 @@ flags.DEFINE_enum(
 flags.DEFINE_float("alpha", None, "alpha")
 flags.DEFINE_float("beta", None, "beta")
 flags.DEFINE_float("gamma", None, "gamma")
+flags.DEFINE_bool("average", True, "average")
 
 
 def main(argv):
@@ -34,6 +35,8 @@ def main(argv):
         param["beta"] = FLAGS.beta
     if FLAGS.gamma:
         param["gamma"] = FLAGS.gamma
+    if FLAGS.average is not None:
+        param["average"] = FLAGS.average
     game_names = [
         "KuhnPoker",
         "LeducPokerIso",
@@ -50,7 +53,7 @@ def main(argv):
     ]
     for game_name in game_names:
         run_file = Path(__file__).absolute().parent / "run.py"
-        script = "python {} with game_name={} algo_name={} iterations=2000 save_log=True ".format(
+        script = "python {} with game_name={} algo_name={} iterations=5000 save_log=True ".format(
             run_file, game_name, algo_name
         )
         for param_name, param_value in param.items():

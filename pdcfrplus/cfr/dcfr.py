@@ -25,8 +25,8 @@ class DCFRState(CFRState):
 
 
 class DCFR(CFR):
-    def __init__(self, game_config, logger=None, alpha=1.5, beta=0, gamma=2):
-        super().__init__(game_config, logger, gamma)
+    def __init__(self, game_config, logger=None, alpha=1.5, beta=0, gamma=2, average=True):
+        super().__init__(game_config, logger, gamma=gamma, average=average)
         self.alpha = alpha
         self.beta = beta
 
@@ -36,6 +36,6 @@ class DCFR(CFR):
     def update_state(self, s):
         s.update_regret(self.num_iteration, self.alpha, self.beta)
 
-        s.cumulate_policy(self.num_iteration, self.gamma)
+        s.cumulate_policy(self.num_iteration, self.gamma, self.average)
 
         s.update_current_policy()

@@ -14,7 +14,7 @@ class PIDCFRState(CFRState):
     def update_current_policy(self):
         self.pred_regrets = {
             # a: max(self.regrets[a] + self.imm_regrets[a], 0) for a in self.legal_actions  (1 - 1 / np.exp(2))
-            a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] +  1 / np.exp(2) * (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
+            a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] +  0 * (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
         }
         regret_sum = 0
         for regret in self.pred_regrets.values():
@@ -27,15 +27,9 @@ class PIDCFRState(CFRState):
         self.pre_imm_regrets = copy.deepcopy(self.imm_regrets)
 
 
-    # def cumulate_policy(self, T, gamma):
-    #     for a, p in self.policy.items():
-    #         if T == 1:
-    #             self.cum_policy[a] = self.reach * p
-    #             continue
-    #         self.cum_policy[a] = self.reach * p
 class PIDCFR(CFR):
-    def __init__(self, game_config, logger=None, gamma=2):
-        super().__init__(game_config, logger, gamma)
+    def __init__(self, game_config, logger=None, average = True):
+        super().__init__(game_config, logger, average=average)
 
     def init_state(self, h):
         return PIDCFRState(h)

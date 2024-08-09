@@ -16,6 +16,7 @@ class PCFRPlus(_CFRBase):
         starting_stack_sizes=None,
         delay=0,
         gamma=2,
+        average=True,
     ):
         """
         delay (int):                            Linear Averaging delay of CFR+ (only applicable if ""cfr_plus"" is
@@ -34,6 +35,7 @@ class PCFRPlus(_CFRBase):
         self.delay = delay
         self.gamma = gamma
         self.reset()
+        self.average = average
 
     def _evaluate_avg_strats(self):
         if self._iter_counter > self.delay:
@@ -87,7 +89,7 @@ class PCFRPlus(_CFRBase):
                 contrib = _node.strategy * np.expand_dims(
                     _node.reach_probs[p_id], axis=1
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] = (
                         _node.data["avg_strat_sum"] * np.power((T - 1) / T, self.gamma)
                         + contrib

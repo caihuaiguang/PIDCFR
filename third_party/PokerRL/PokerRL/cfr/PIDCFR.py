@@ -15,6 +15,7 @@ class PIDCFR(_CFRBase):
         other_agent_bet_set=None,
         starting_stack_sizes=None,
         delay=0,
+        average=True,
     ):
         """
         delay (int):                            Linear Averaging delay of CFR+ (only applicable if ""cfr_plus"" is
@@ -32,6 +33,7 @@ class PIDCFR(_CFRBase):
 
         self.delay = delay
         self.reset()
+        self.average = average
 
     def _evaluate_avg_strats(self):
         if self._iter_counter > self.delay:
@@ -52,13 +54,13 @@ class PIDCFR(_CFRBase):
                 if _node.p_id_acting_next == p_id:
                     N = len(_node.children)
                     if _node.data["pre_imm_regret"] is None:
-                        _reg = 1.1* np.maximum(_node.data["imm_regret"], 0) +\
-                            _node.data["regret"] +\
-                            0.2*np.maximum(_node.data["imm_regret"], 0)
+                        _reg = 1* np.maximum(_node.data["imm_regret"], 0) +\
+                            (1 - 1 / np.exp(2)) *np.maximum( _node.data["regret"], 0) +\
+                            0.0*np.maximum(_node.data["imm_regret"], 0)
                     else:
-                        _reg = 1.1* np.maximum(_node.data["imm_regret"], 0) +\
-                                _node.data["regret"] +\
-                                0.2*np.maximum(_node.data["imm_regret"] - _node.data["pre_imm_regret"], 0)
+                        _reg = 1* np.maximum(_node.data["imm_regret"], 0) +\
+                               (1 - 1 / np.exp(2)) * np.maximum(_node.data["regret"], 0) +\
+                                0.0*(np.maximum(_node.data["imm_regret"], 0) - np.maximum(_node.data["pre_imm_regret"], 0))
                     _reg_sum = np.expand_dims(np.sum(_reg, axis=1), axis=1).repeat(
                         N, axis=1
                     )
@@ -104,7 +106,7 @@ class PIDCFR(_CFRBase):
                     * np.expand_dims(_node.reach_probs[p_id], axis=1)
                     * (self._iter_counter + 1)
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] += contrib
                 else:
                     _node.data["avg_strat_sum"] = contrib

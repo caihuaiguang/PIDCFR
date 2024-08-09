@@ -14,6 +14,7 @@ class DCFR(_CFRBase):
         agent_bet_set,
         other_agent_bet_set=None,
         starting_stack_sizes=None,
+        average=True,
     ):
         super().__init__(
             name=name,
@@ -28,6 +29,7 @@ class DCFR(_CFRBase):
         self.alpha = 1.5
         self.beta = 0
         self.gamma = 2
+        self.average = average
 
     def _regret_formula_after_first_it(self, ev_all_actions, strat_ev, last_regrets):
         imm_regrets = ev_all_actions - strat_ev
@@ -88,7 +90,7 @@ class DCFR(_CFRBase):
                 contrib = _node.strategy * np.expand_dims(
                     _node.reach_probs[p_id], axis=1
                 )
-                if self._iter_counter > 0 and self.is_last is False:
+                if self._iter_counter > 0 and self.average is True:
                     _node.data["avg_strat_sum"] = (
                         _node.data["avg_strat_sum"] * np.power((T - 1) / T, self.gamma)
                         + contrib

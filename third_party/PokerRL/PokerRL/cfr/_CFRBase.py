@@ -40,7 +40,6 @@ class CFRBase:
 
         self._name = name
         self._n_seats = 2
-        self.is_last = True
 
         self._chief_handle = chief_handle
 

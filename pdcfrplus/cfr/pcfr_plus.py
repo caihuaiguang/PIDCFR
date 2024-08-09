@@ -27,8 +27,8 @@ class PCFRPlusState(CFRState):
     #             continue
     #         self.cum_policy[a] = self.reach * p
 class PCFRPlus(CFR):
-    def __init__(self, game_config, logger=None, gamma=2):
-        super().__init__(game_config, logger, gamma)
+    def __init__(self, game_config, logger=None, gamma=2, average = True):
+        super().__init__(game_config, logger, gamma=gamma, average=average)
 
     def init_state(self, h):
         return PCFRPlusState(h)

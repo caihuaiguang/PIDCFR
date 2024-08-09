@@ -18,6 +18,7 @@ class CFRRunner:
         alpha=1.5,
         gamma=0,
         beta=1,
+        average = True,
     ):
         self.solver_class = load_module("PokerRL.cfr:{}".format(algo_name))
         game_dict = {
@@ -31,6 +32,7 @@ class CFRRunner:
         self.alpha = alpha
         self.gamma = gamma
         self.beta = beta
+        self.average = average
         chief = ChiefBase(t_prof=None)
         config = dict(
             name="test",
@@ -41,6 +43,7 @@ class CFRRunner:
             alpha=self.alpha,
             gamma=self.gamma,
             beta=self.beta,
+            average=self.average
         )
         self.cfr = init_object(self.solver_class, config)
         self.step = 0
