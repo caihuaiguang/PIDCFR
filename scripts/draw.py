@@ -20,6 +20,7 @@ game_names = [
     "Battleship_32_3",
     "Subgame3",
     "Subgame4",
+    "SmallMatrix",
 ]
 
 # List of methods

@@ -72,6 +72,14 @@ def _zero_sum_node_decorator(state):
         attrs["label"] = str(int(state.returns()[0]))
     return attrs
 
+class SmallMatrix(GameConfig):
+    def __init__(self, iterations, weight=1):
+        super().__init__(
+            game_name="nfg_game",
+            iterations=iterations,
+            transform=True,
+        )
+        self.params["filename"] = "nfg/2.nfg"
 
 class KuhnPoker(GameConfig):
     def __init__(self, iterations=1000):
@@ -165,6 +173,7 @@ class LiarsDice(GameConfig):
 
 def read_game_config(game_name, iterations=1000) -> GameConfig:
     game_configs = [
+        SmallMatrix(iterations),
         KuhnPoker(iterations),
         LeducPoker(iterations),
         LeducPokerIso(iterations),

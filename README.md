@@ -30,6 +30,8 @@ find results -type d -regex ".*/*/PIDCFR"  -exec rm -rf {} +
 python scripts/run.py with game_name="KuhnPoker" algo_name="PIDCFR" iterations=2000 save_log=True
 export PYTHONPATH=/home/caihuaiguang/DSG/pytorch-shapley-cam:$PYTHONPATH
 python scripts/draw.py 
+
+python scripts/run.py with game_name="SmallMatrix" algo_name="CFR" iterations=200 save_log=True average=False
 ```
 
 ## References
