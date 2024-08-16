@@ -47,14 +47,14 @@ methods = [
     "DCFRPlus",
     "PCFRPlus",
     "PDCFRPlus",
-    "PIDCFR",
+    # "PIDCFR",
 ]
 
 # Base directory
 base_dir = './results'
 
 # Iterate over each game
-for idx, game in enumerate(game_names):
+for idx_, game in enumerate(game_names):
     game_dir = os.path.join(base_dir, game)
     
     # Check if the game directory exists
@@ -112,7 +112,7 @@ for idx, game in enumerate(game_names):
     os.makedirs(output_dir, exist_ok=True)
 
     # Save the plot as a vector image
-    plt.savefig(os.path.join(output_dir, f'{game_names_show[idx]}_last.pdf'), format='pdf')
+    plt.savefig(os.path.join(output_dir, f'{game_names_show[idx_]}_last.pdf'), format='pdf')
 
     # Close the figure to free memory
     plt.close(fig)
@@ -136,7 +136,7 @@ for idx, game in enumerate(game_names):
     ax1.grid(True, which="major", linestyle="-")  # Simplified grid with solid lines for major grid
 
     # Save the plot as a vector image
-    plt.savefig(os.path.join(output_dir, f'{game_names_show[idx]}_avg.pdf'), format='pdf')
+    plt.savefig(os.path.join(output_dir, f'{game_names_show[idx_]}_avg.pdf'), format='pdf')
 
     # Close the figure to free memory
     plt.close(fig)
