@@ -1,0 +1,34 @@
+{
+  "algo_name": "DCFRPlus",
+  "alpha": 1.5,
+  "average": false,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "home",
+          "caihuaiguang",
+          "PIDCFR",
+          "results",
+          "Subgame3",
+          "DCFRPlus"
+        ]
+      }
+    ]
+  },
+  "game_name": "Subgame3",
+  "gamma": 4.0,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "algo_name": "PIDCFR",
+  "alpha": null,
+  "average": true,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "results",
+          "SmallMatrix",
+          "PIDCFR"
+        ]
+      }
+    ]
+  },
+  "game_name": "SmallMatrix",
+  "gamma": null,
+  "iterations": 200,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

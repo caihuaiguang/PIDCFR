@@ -54,13 +54,13 @@ class PIDCFR(_CFRBase):
                 if _node.p_id_acting_next == p_id:
                     N = len(_node.children)
                     if _node.data["pre_imm_regret"] is None:
-                        _reg = 1* np.maximum(_node.data["imm_regret"], 0) +\
-                            (1 - 1 / np.exp(2)) *np.maximum( _node.data["regret"], 0) +\
-                            0.0*np.maximum(_node.data["imm_regret"], 0)
+                        _reg = np.exp(1)* np.maximum(_node.data["imm_regret"], 0) +\
+                            1 *np.maximum( _node.data["regret"], 0) +\
+                            0*np.maximum(_node.data["imm_regret"], 0)
                     else:
-                        _reg = 1* np.maximum(_node.data["imm_regret"], 0) +\
-                               (1 - 1 / np.exp(2)) * np.maximum(_node.data["regret"], 0) +\
-                                0.0*(np.maximum(_node.data["imm_regret"], 0) - np.maximum(_node.data["pre_imm_regret"], 0))
+                        _reg = np.exp(1)* np.maximum(_node.data["imm_regret"], 0) +\
+                               1 * np.maximum(_node.data["regret"], 0) +\
+                                0*(np.maximum(_node.data["imm_regret"], 0) - np.maximum(_node.data["pre_imm_regret"], 0))
                     _reg_sum = np.expand_dims(np.sum(_reg, axis=1), axis=1).repeat(
                         N, axis=1
                     )

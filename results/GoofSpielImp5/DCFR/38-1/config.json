@@ -1,0 +1,34 @@
+{
+  "algo_name": "DCFR",
+  "alpha": null,
+  "average": true,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "home",
+          "caihuaiguang",
+          "PIDCFR",
+          "results",
+          "GoofSpielImp5",
+          "DCFR"
+        ]
+      }
+    ]
+  },
+  "game_name": "GoofSpielImp5",
+  "gamma": null,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

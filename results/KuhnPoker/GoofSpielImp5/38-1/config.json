@@ -1,0 +1,30 @@
+{
+  "algo_name": "GoofSpielImp5",
+  "alpha": null,
+  "average": false,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "results",
+          "KuhnPoker",
+          "GoofSpielImp5"
+        ]
+      }
+    ]
+  },
+  "game_name": "KuhnPoker",
+  "gamma": null,
+  "iterations": 2000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

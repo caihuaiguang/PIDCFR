@@ -14,7 +14,8 @@ class PIDCFRState(CFRState):
     def update_current_policy(self):
         self.pred_regrets = {
             # a: max(self.regrets[a] + self.imm_regrets[a], 0) for a in self.legal_actions  (1 - 1 / np.exp(2))
-            a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] +  0 * (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
+            # a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] + 0* (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
+            a: np.exp(1) * self.imm_regrets[a] + 1 * self.regrets[a] + 0* (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
         }
         regret_sum = 0
         for regret in self.pred_regrets.values():

@@ -1,0 +1,136 @@
+{
+  "artifacts": [],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/home/caihuaiguang/PIDCFR/pdcfrplus/utils",
+    "dependencies": [
+      "numpy==1.24.4",
+      "sacred==0.8.5"
+    ],
+    "mainfile": "exp.py",
+    "name": "default",
+    "repositories": [
+      {
+        "commit": "c5346427519f60a1d8ac7532929015ba34a49a01",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      },
+      {
+        "commit": "c5346427519f60a1d8ac7532929015ba34a49a01",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      }
+    ],
+    "sources": [
+      [
+        "exp.py",
+        "_sources/exp_7b3b161a3e13b9d929853206a205bcd4.py"
+      ],
+      [
+        "utils.py",
+        "_sources/utils_94e651b1fb1a5c3373b8ee29e3b77fe0.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/media/caihuaiguang/miniconda3/envs/cfr/lib/python3.8/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"scripts/run.py\", line 52, in main\n    solver_class = load_module(\"pdcfrplus.cfr:{}\".format(algo_name))\n",
+    "  File \"/home/caihuaiguang/PIDCFR/pdcfrplus/utils/utils.py\", line 22, in load_module\n    fn = getattr(mod, attr_name)\n",
+    "AttributeError: module 'pdcfrplus.cfr' has no attribute 'GoofSpielImp5'\n"
+  ],
+  "heartbeat": "2024-08-13T19:12:51.359109",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
+    "gpus": {
+      "driver_version": "510.47.03",
+      "gpus": [
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        }
+      ]
+    },
+    "hostname": "earth",
+    "os": [
+      "Linux",
+      "Linux-3.10.0-1160.76.1.el7.x86_64-x86_64-with-glibc2.17"
+    ],
+    "python_version": "3.8.18"
+  },
+  "meta": {
+    "command": "main",
+    "config_updates": {
+      "algo_name": "GoofSpielImp5",
+      "average": false,
+      "game_name": "KuhnPoker",
+      "iterations": 2000,
+      "save_log": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "game_name=KuhnPoker",
+        "algo_name=GoofSpielImp5",
+        "iterations=2000",
+        "save_log=True",
+        "average=False"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2024-08-13T19:12:51.318618",
+  "status": "FAILED",
+  "stop_time": "2024-08-13T19:12:51.360675"
+}

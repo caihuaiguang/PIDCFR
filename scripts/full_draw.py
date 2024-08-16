@@ -9,7 +9,6 @@ plt.style.use(['science', 'no-latex'])
 # List of game names
 game_names = [
     "KuhnPoker",
-    "LeducPokerIso",
     "LiarsDice4",
     "LiarsDice5",
     "GoofSpiel4",
@@ -18,8 +17,24 @@ game_names = [
     "GoofSpielImp5",
     "Battleship_22_3",
     "Battleship_32_3",
+    "LeducPokerIso",
     "Subgame3",
     "Subgame4",
+]
+
+game_names_show = [
+    "Kuhn Poker",
+    "Liar's Dice (4)",
+    "Liar's Dice (5)",
+    "GoofSpiel (4)",
+    "GoofSpiel (5)",
+    "GoofSpielImp (4)",
+    "GoofSpielImp (5)",
+    "Battleship (2)",
+    "Battleship (3)",
+    "Leduc Poker",
+    "HUNL Subgame (3)",
+    "HUNL Subgame (4)",
 ]
 
 # List of methods
@@ -31,7 +46,7 @@ methods = [
     "DCFRPlus",
     "PCFRPlus",
     "PDCFRPlus",
-    "PIDCFR",
+    # "PIDCFR",
 ]
 
 # Base directory
@@ -83,7 +98,7 @@ for idx, game in enumerate(game_names):
         ax_avg.plot(data['step'], data['exp'], label=label, color=colors[method_idx % len(colors)])
     ax_avg.set_yscale('log')
     ax_avg.set_ylim(10**-18, 10**0)
-    ax_avg.set_title(f'{game} - Avg', fontsize=16, fontweight='bold' )
+    ax_avg.set_title(f'{game_names_show[idx]} - Avg', fontsize=16, fontweight='bold' )
     ax_avg.grid(True, which="major", linestyle="-")
     
     # Plotting for 'last' case in the corresponding subplot
@@ -92,7 +107,7 @@ for idx, game in enumerate(game_names):
         ax_last.plot(data['step'], data['exp'], label=label, color=colors[method_idx % len(colors)])
     ax_last.set_yscale('log')
     ax_last.set_ylim(10**-18, 10**0)
-    ax_last.set_title(f'{game} - Last', fontsize=16, fontweight='bold')
+    ax_last.set_title(f'{game_names_show[idx]} - Last', fontsize=16, fontweight='bold')
     ax_last.grid(True, which="major", linestyle="-")
 
 # Adjusting the font size for axis labels and ticks
@@ -103,7 +118,7 @@ for ax in axs:
     ax.tick_params(axis='both', which='minor', labelsize=12)  # 次刻度标签字体大小
 # Set labels (only on the first subplot)
 fig.text(0.5, 0.02, 'Step', ha='center', fontsize=18, fontweight='bold')
-fig.text(0.02, 0.5, 'Nash gap', va='center', rotation='vertical', fontsize=18, fontweight='bold')
+fig.text(0.02, 0.5, 'Exploitability', va='center', rotation='vertical', fontsize=18, fontweight='bold')
 
 # Set a single legend outside of all subplots
 handles, labels = axs[0].get_legend_handles_labels()

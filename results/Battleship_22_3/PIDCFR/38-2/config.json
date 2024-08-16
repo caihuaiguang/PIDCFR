@@ -1,0 +1,34 @@
+{
+  "algo_name": "PIDCFR",
+  "alpha": null,
+  "average": false,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "home",
+          "caihuaiguang",
+          "PIDCFR",
+          "results",
+          "Battleship_22_3",
+          "PIDCFR"
+        ]
+      }
+    ]
+  },
+  "game_name": "Battleship_22_3",
+  "gamma": null,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}
