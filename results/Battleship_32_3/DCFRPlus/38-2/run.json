@@ -32,7 +32,7 @@
       ]
     ]
   },
-  "heartbeat": "2024-08-16T13:38:49.871712",
+  "heartbeat": "2024-08-16T14:54:53.283763",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
@@ -128,5 +128,6 @@
   "resources": [],
   "result": null,
   "start_time": "2024-08-12T08:59:16.673263",
-  "status": "RUNNING"
+  "status": "COMPLETED",
+  "stop_time": "2024-08-16T14:54:53.261112"
 }
