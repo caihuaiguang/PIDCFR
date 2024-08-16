@@ -28,13 +28,16 @@ python scripts/parallel_run.py --algo PDCFRPlus --gamma=5 --alpha=2.3
 python scripts/parallel_run.py --algo PIDCFR --average=False
 find results -type d -regex ".*/*/PIDCFR"  -exec rm -rf {} +
 find results -type d -regex ".*/*/PIDCFR/38-3"  -exec rm -rf {} +
-python scripts/run.py with game_name="KuhnPoker" algo_name="PIDCFR" iterations=2000 save_log=True
+python scripts/run.py with game_name="KuhnPoker" algo_name="PIDCFR" iterations=5000 save_log=True
 export PYTHONPATH=/home/caihuaiguang/DSG/pytorch-shapley-cam:$PYTHONPATH
 python scripts/draw.py 
 
-python scripts/run.py with game_name="SmallMatrix" algo_name="CFR" iterations=2000 save_log=True average=False
+python scripts/run.py with game_name="SmallMatrix" algo_name="CFR" iterations=5000 save_log=True average=False
 
-python scripts/run.py with game_name="GoofSpielImp4" algo_name="PIDCFR" iterations=2000 save_log=True average=False
+python scripts/run.py with game_name="GoofSpielImp4" algo_name="PIDCFR" iterations=5000 save_log=True average=False
+
+python scripts/run.py with game_name="Subgame3" algo_name="PDCFRPlus" iterations=5000 save_log=True
+
 
 ```
 

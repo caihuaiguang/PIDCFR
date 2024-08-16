@@ -11,12 +11,12 @@
     "name": "default",
     "repositories": [
       {
-        "commit": "01aef9f645a688b014f449894cc19a04b0778bd7",
+        "commit": "875912fbab84ddc9fe8a2a7799a06dbbb1bbe6d7",
         "dirty": true,
         "url": "https://github.com/caihuaiguang/PIDCFR.git"
       },
       {
-        "commit": "01aef9f645a688b014f449894cc19a04b0778bd7",
+        "commit": "875912fbab84ddc9fe8a2a7799a06dbbb1bbe6d7",
         "dirty": true,
         "url": "https://github.com/caihuaiguang/PIDCFR.git"
       }
@@ -32,7 +32,7 @@
       ]
     ]
   },
-  "heartbeat": "2024-08-16T10:41:20.562544",
+  "heartbeat": "2024-08-16T12:24:17.389347",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
@@ -82,10 +82,7 @@
     "command": "main",
     "config_updates": {
       "algo_name": "DCFRPlus",
-      "alpha": 1.5,
-      "average": true,
       "game_name": "Subgame3",
-      "gamma": 4.0,
       "iterations": 5000,
       "save_log": true
     },
@@ -116,10 +113,7 @@
         "game_name=Subgame3",
         "algo_name=DCFRPlus",
         "iterations=5000",
-        "save_log=True",
-        "alpha=1.5",
-        "gamma=4.0",
-        "average=True"
+        "save_log=True"
       ],
       "help": false,
       "with": true
@@ -127,6 +121,6 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2024-08-09T09:16:38.402383",
+  "start_time": "2024-08-16T11:11:24.486778",
   "status": "RUNNING"
 }

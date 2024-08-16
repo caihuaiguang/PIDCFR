@@ -1,6 +1,6 @@
 {
   "algo_name": "DCFRPlus",
-  "alpha": 1.5,
+  "alpha": null,
   "average": true,
   "beta": null,
   "folder": {
@@ -10,10 +10,6 @@
       },
       {
         "py/tuple": [
-          "/",
-          "home",
-          "caihuaiguang",
-          "PIDCFR",
           "results",
           "Subgame3",
           "DCFRPlus"
@@ -22,7 +18,7 @@
     ]
   },
   "game_name": "Subgame3",
-  "gamma": 4.0,
+  "gamma": null,
   "iterations": 5000,
   "save_log": true,
   "seed": 0,
