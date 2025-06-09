@@ -1,7 +1,6 @@
 {
   "algo_name": "LinearCFR",
   "alpha": null,
-  "average": true,
   "beta": null,
   "folder": {
     "py/reduce": [
@@ -13,7 +12,7 @@
           "/",
           "home",
           "caihuaiguang",
-          "PIDCFR",
+          "PDCFRPlus",
           "results",
           "GoofSpielImp5",
           "LinearCFR"
@@ -23,7 +22,7 @@
   },
   "game_name": "GoofSpielImp5",
   "gamma": null,
-  "iterations": 5000,
+  "iterations": 20000,
   "save_log": true,
   "seed": 0,
   "writer_strings": [

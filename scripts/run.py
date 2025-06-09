@@ -25,6 +25,7 @@ def config():
     writer_strings = ["stdout"]
     save_log = False
     folder = Path(__file__).parents[1] / "results" / game_name / algo_name
+    folder.parent.mkdir(parents=True, exist_ok=True)
     if save_log:
         writer_strings += ["csv", "sacred"]
         ex.observers.append(ServerFileStorageObserver(folder))

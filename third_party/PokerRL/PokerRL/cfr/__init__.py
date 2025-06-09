@@ -6,3 +6,4 @@ from .LinearCFR import LinearCFR
 from .PCFRPlus import PCFRPlus
 from .PDCFRPlus import PDCFRPlus
 from .PIDCFR import PIDCFR
+from .A2LCFR import A2LCFR

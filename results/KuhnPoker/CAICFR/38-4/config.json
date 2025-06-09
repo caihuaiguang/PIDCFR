@@ -1,0 +1,29 @@
+{
+  "algo_name": "CAICFR",
+  "alpha": null,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "results",
+          "KuhnPoker",
+          "CAICFR"
+        ]
+      }
+    ]
+  },
+  "game_name": "KuhnPoker",
+  "gamma": null,
+  "iterations": 20000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

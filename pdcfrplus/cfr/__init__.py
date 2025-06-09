@@ -7,3 +7,5 @@ from .pcfr_plus import PCFRPlus
 from .pdcfr_plus import PDCFRPlus
 
 from .pidcfr import PIDCFR
+from .a2lcfr import A2LCFR
+

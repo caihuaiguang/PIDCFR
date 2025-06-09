@@ -17,6 +17,7 @@ flags.DEFINE_enum(
         "DCFRPlus",
         "PDCFR",
         "PIDCFR",
+        "A2LCFR",
     ],
     "name of the algorithm",
 )

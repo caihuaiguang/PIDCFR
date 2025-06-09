@@ -2,7 +2,7 @@
   "artifacts": [],
   "command": "main",
   "experiment": {
-    "base_dir": "/home/caihuaiguang/PIDCFR/pdcfrplus/utils",
+    "base_dir": "/home/caihuaiguang/PDCFRPlus/pdcfrplus/utils",
     "dependencies": [
       "numpy==1.24.4",
       "sacred==0.8.5"
@@ -11,14 +11,14 @@
     "name": "default",
     "repositories": [
       {
-        "commit": "01aef9f645a688b014f449894cc19a04b0778bd7",
-        "dirty": true,
-        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+        "commit": "65a4cd2f43a71443c6a575086524975e70abfa9a",
+        "dirty": false,
+        "url": "https://github.com/rpSebastian/PDCFRPlus.git"
       },
       {
-        "commit": "01aef9f645a688b014f449894cc19a04b0778bd7",
-        "dirty": true,
-        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+        "commit": "65a4cd2f43a71443c6a575086524975e70abfa9a",
+        "dirty": false,
+        "url": "https://github.com/rpSebastian/PDCFRPlus.git"
       }
     ],
     "sources": [
@@ -32,7 +32,7 @@
       ]
     ]
   },
-  "heartbeat": "2024-08-09T10:39:32.424713",
+  "heartbeat": "2024-06-09T13:06:25.715543",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
@@ -82,10 +82,9 @@
     "command": "main",
     "config_updates": {
       "algo_name": "PCFRPlus",
-      "average": true,
       "game_name": "GoofSpielImp4",
       "gamma": 2.0,
-      "iterations": 5000,
+      "iterations": 20000,
       "save_log": true
     },
     "named_configs": [],
@@ -114,10 +113,9 @@
       "UPDATE": [
         "game_name=GoofSpielImp4",
         "algo_name=PCFRPlus",
-        "iterations=5000",
+        "iterations=20000",
         "save_log=True",
-        "gamma=2.0",
-        "average=True"
+        "gamma=2.0"
       ],
       "help": false,
       "with": true
@@ -125,7 +123,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2024-08-09T09:16:25.195124",
+  "start_time": "2024-06-09T11:43:43.757750",
   "status": "COMPLETED",
-  "stop_time": "2024-08-09T10:39:32.422737"
+  "stop_time": "2024-06-09T13:06:25.700450"
 }

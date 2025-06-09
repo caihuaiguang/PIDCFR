@@ -1,3 +1,6 @@
+# Read the data.csv file for the 'last' case (38-2)
+# Read the data.csv file for the 'avg' case (38-1)
+
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -48,6 +51,7 @@ methods = [
     "PCFRPlus",
     "PDCFRPlus",
     # "PIDCFR",
+    # "A2LCFR",
 ]
 
 # Base directory
