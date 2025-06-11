@@ -2,23 +2,23 @@
   "artifacts": [],
   "command": "main",
   "experiment": {
-    "base_dir": "/home/caihuaiguang/PDCFRPlus/pdcfrplus/utils",
+    "base_dir": "/home/caihuaiguang/PIDCFR/pdcfrplus/utils",
     "dependencies": [
-      "numpy==1.24.4",
+      "numpy==1.24.3",
       "sacred==0.8.5"
     ],
     "mainfile": "exp.py",
     "name": "default",
     "repositories": [
       {
-        "commit": "65a4cd2f43a71443c6a575086524975e70abfa9a",
-        "dirty": false,
-        "url": "https://github.com/rpSebastian/PDCFRPlus.git"
+        "commit": "bcd259f198be8aa4e63db0b37f51decfcb1de4db",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
       },
       {
-        "commit": "65a4cd2f43a71443c6a575086524975e70abfa9a",
-        "dirty": false,
-        "url": "https://github.com/rpSebastian/PDCFRPlus.git"
+        "commit": "bcd259f198be8aa4e63db0b37f51decfcb1de4db",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
       }
     ],
     "sources": [
@@ -32,7 +32,7 @@
       ]
     ]
   },
-  "heartbeat": "2024-06-09T04:37:05.497202",
+  "heartbeat": "2025-06-11T07:10:44.049157",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
@@ -82,8 +82,9 @@
     "command": "main",
     "config_updates": {
       "algo_name": "CFR",
+      "average": true,
       "game_name": "LiarsDice4",
-      "iterations": 20000,
+      "iterations": 5000,
       "save_log": true
     },
     "named_configs": [],
@@ -112,8 +113,9 @@
       "UPDATE": [
         "game_name=LiarsDice4",
         "algo_name=CFR",
-        "iterations=20000",
-        "save_log=True"
+        "iterations=5000",
+        "save_log=True",
+        "average=True"
       ],
       "help": false,
       "with": true
@@ -121,7 +123,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2024-06-08T12:58:55.901465",
+  "start_time": "2025-06-11T04:52:07.090861",
   "status": "COMPLETED",
-  "stop_time": "2024-06-09T04:37:05.495012"
+  "stop_time": "2025-06-11T07:10:44.047037"
 }

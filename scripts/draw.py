@@ -51,7 +51,7 @@ methods = [
     "PCFRPlus",
     "PDCFRPlus",
     # "PIDCFR",
-    # "A2LCFR",
+    "A2LCFR",
 ]
 
 # Base directory

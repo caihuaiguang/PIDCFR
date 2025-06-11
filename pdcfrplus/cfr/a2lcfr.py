@@ -5,31 +5,35 @@ import numpy as np
 class A2LCFRState(CFRState):
     def init_data(self):
         super().init_data()
-        self.pre_imm_regrets = {a: 0 for a in self.legal_actions}
 
-    def update_regret(self):
+    def update_regret(self, T):
         for a in self.legal_actions:
             self.regrets[a] = self.regrets[a] + self.imm_regrets[a]
 
-    def update_current_policy(self):
-        self.pred_regrets = {
-            # a: max(self.regrets[a] + self.imm_regrets[a], 0) for a in self.legal_actions  (1 - 1 / np.exp(2))
-            # a: 1 * max(0, self.imm_regrets[a]) + (1 - 1 / np.exp(2)) * self.regrets[a] + 0* (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
-            a: np.exp(1) * self.imm_regrets[a] + 1 * self.regrets[a] + 0* (max(0, self.imm_regrets[a]) - max(0, self.pre_imm_regrets[a])) for a in self.legal_actions
-        }
+
+    # def cumulate_policy(self, T, gamma, average):
+    #     for a, p in self.policy.items():
+    #         self.cum_policy[a] = (
+    #             self.cum_policy[a] * np.power((T - 1), 2) / T + self.reach * p
+    #         )
+    
+    def update_current_policy(self, T):
         regret_sum = 0
-        for regret in self.pred_regrets.values():
+        for regret in self.regrets.values():
             regret_sum += max(0, regret)
-        for a, regret in self.pred_regrets.items():
+        for a, regret in self.regrets.items():
             if regret_sum == 0:
                 self.policy[a] = 1 / self.num_actions
             else:
                 self.policy[a] = max(0, regret) / regret_sum
-        self.pre_imm_regrets = copy.deepcopy(self.imm_regrets)
+
+        self.cum_policy = self.get_average_policy()
+        for a, p in self.policy.items():
+            self.policy[a] = self.reach * (self.cum_policy[a] * (T - 1) / T +  p * 1 / T)
 
 
 class A2LCFR(CFR):
-    def __init__(self, game_config, logger=None, average = True):
+    def __init__(self, game_config, logger=None, average = False, A2L = True):
         super().__init__(game_config, logger, average=average)
 
     def init_state(self, h):
@@ -37,6 +41,7 @@ class A2LCFR(CFR):
 
 
     def update_state(self, s):
+        # self.logger.record("self.num_iteration", self.num_iteration)
         s.update_regret(self.num_iteration)
 
         s.cumulate_policy(self.num_iteration, self.gamma, self.average)

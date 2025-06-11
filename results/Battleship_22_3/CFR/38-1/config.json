@@ -1,6 +1,7 @@
 {
   "algo_name": "CFR",
   "alpha": null,
+  "average": true,
   "beta": null,
   "folder": {
     "py/reduce": [
@@ -12,7 +13,7 @@
           "/",
           "home",
           "caihuaiguang",
-          "PDCFRPlus",
+          "PIDCFR",
           "results",
           "Battleship_22_3",
           "CFR"
@@ -22,7 +23,7 @@
   },
   "game_name": "Battleship_22_3",
   "gamma": null,
-  "iterations": 20000,
+  "iterations": 5000,
   "save_log": true,
   "seed": 0,
   "writer_strings": [
