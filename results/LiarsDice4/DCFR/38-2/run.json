@@ -1,0 +1,129 @@
+{
+  "artifacts": [],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/home/caihuaiguang/PIDCFR/pdcfrplus/utils",
+    "dependencies": [
+      "numpy==1.24.4",
+      "sacred==0.8.5"
+    ],
+    "mainfile": "exp.py",
+    "name": "default",
+    "repositories": [
+      {
+        "commit": "5e52306cfec5f165687f0bae654ffda7d5ce229b",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      },
+      {
+        "commit": "5e52306cfec5f165687f0bae654ffda7d5ce229b",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      }
+    ],
+    "sources": [
+      [
+        "exp.py",
+        "_sources/exp_7b3b161a3e13b9d929853206a205bcd4.py"
+      ],
+      [
+        "utils.py",
+        "_sources/utils_94e651b1fb1a5c3373b8ee29e3b77fe0.py"
+      ]
+    ]
+  },
+  "heartbeat": "2024-08-12T14:47:10.399977",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Gold 6326 CPU @ 2.90GHz",
+    "gpus": {
+      "driver_version": "510.47.03",
+      "gpus": [
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        },
+        {
+          "model": "NVIDIA A40",
+          "persistence_mode": true,
+          "total_memory": 46068
+        }
+      ]
+    },
+    "hostname": "earth",
+    "os": [
+      "Linux",
+      "Linux-3.10.0-1160.76.1.el7.x86_64-x86_64-with-glibc2.17"
+    ],
+    "python_version": "3.8.18"
+  },
+  "meta": {
+    "command": "main",
+    "config_updates": {
+      "algo_name": "DCFR",
+      "average": false,
+      "game_name": "LiarsDice4",
+      "iterations": 5000,
+      "save_log": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "game_name=LiarsDice4",
+        "algo_name=DCFR",
+        "iterations=5000",
+        "save_log=True",
+        "average=False"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2024-08-12T08:59:14.222875",
+  "status": "COMPLETED",
+  "stop_time": "2024-08-12T14:47:10.397921"
+}

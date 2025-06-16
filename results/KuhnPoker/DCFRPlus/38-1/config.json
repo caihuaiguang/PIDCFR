@@ -1,0 +1,34 @@
+{
+  "algo_name": "DCFRPlus",
+  "alpha": 1.5,
+  "average": true,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "home",
+          "caihuaiguang",
+          "PIDCFR",
+          "results",
+          "KuhnPoker",
+          "DCFRPlus"
+        ]
+      }
+    ]
+  },
+  "game_name": "KuhnPoker",
+  "gamma": 4.0,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}
