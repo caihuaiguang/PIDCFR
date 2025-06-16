@@ -25,11 +25,11 @@ class A2LCFRState(CFRState):
             if regret_sum == 0:
                 self.policy[a] = 1 / self.num_actions
             else:
-                self.policy[a] = max(0, regret) / regret_sum
+                self.policy[a] += max(0, regret) / regret_sum
 
-        self.cum_policy = self.get_average_policy()
-        for a, p in self.policy.items():
-            self.policy[a] = self.reach * (self.cum_policy[a] * (T - 1) / T +  p * 1 / T)
+        # self.cum_policy = self.get_average_policy()
+        # for a, p in self.policy.items():
+        #     self.policy[a] +=  self.reach * p 
 
 
 class A2LCFR(CFR):
