@@ -42,17 +42,18 @@ class CFRState(StateBase):
                 self.cum_policy[a] = self.reach * p
     def clear_temp(self):
         for a in self.regrets.keys():
-            self.imm_regrets_copy[a] = self.imm_regrets[a]
+            self.imm_regrets_copy[a] = 0
             self.imm_regrets[a] = 0
         self.reach = 0
 
 
 class CFR(SolverBase):
-    def __init__(self, game_config: GameConfig, logger: Logger = None, gamma: int = 0, average = True, A2L = False):
+    def __init__(self, game_config: GameConfig, logger: Logger = None, gamma: int = 0, average = True, A2L = False, PID = False):
         super().__init__(game_config, logger)
         self.gamma = gamma
         self.average = average
         self.A2L = A2L
+        self.PID = PID
 
     def init_state(self, h):
         return CFRState(h)
@@ -120,10 +121,15 @@ class CFR(SolverBase):
                 pre_child_v_a = s.pre_child_v[a]
                 s.pre_child_v[a] = child_v[a]
                 child_v[a] = self.num_iteration * child_v[a] - (self.num_iteration -1) * pre_child_v_a
-            v += p * child_v[a]
+                v += p * s.pre_child_v[a]
+            if self.PID is True:
+                s.pre_child_v[a] = 1/self.num_iteration * child_v[a] + (self.num_iteration -1)/self.num_iteration * s.pre_child_v[a]
+                # s.pre_child_v[a] = child_v[a]
+                v += p * s.pre_child_v[a]
 
         for a in h.legal_actions():
-            s.imm_regrets[a] += opp_reach * (child_v[a] - v)
+            s.imm_regrets[a] += opp_reach * (child_v[a] - v_return)
+            s.imm_regrets_copy[a] += opp_reach * (s.pre_child_v[a] - v)
 
         s.reach += my_reach
         return v_return
