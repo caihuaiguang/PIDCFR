@@ -49,8 +49,8 @@ def main(argv):
         "GoofSpielImp5",
         "Battleship_22_3",
         "Battleship_32_3",
-        "Subgame3",
-        "Subgame4",
+        # "Subgame3",
+        # "Subgame4",
     ]
     for game_name in game_names:
         run_file = Path(__file__).absolute().parent / "run.py"

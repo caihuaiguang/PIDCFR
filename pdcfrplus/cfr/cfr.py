@@ -123,7 +123,7 @@ class CFR(SolverBase):
                 child_v[a] = self.num_iteration * child_v[a] - (self.num_iteration -1) * pre_child_v_a
                 v += p * s.pre_child_v[a]
             if self.PID is True:
-                s.pre_child_v[a] = 1/self.num_iteration * child_v[a] + (self.num_iteration -1)/self.num_iteration * s.pre_child_v[a]
+                s.pre_child_v[a] = 1/self.num_iteration * child_v[a] + (self.num_iteration - 1)/self.num_iteration * s.pre_child_v[a]
                 # s.pre_child_v[a] = child_v[a]
                 v += p * s.pre_child_v[a]
 

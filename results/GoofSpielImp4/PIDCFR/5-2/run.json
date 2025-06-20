@@ -1,0 +1,94 @@
+{
+  "artifacts": [],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/root/PIDCFR/pdcfrplus/utils",
+    "dependencies": [
+      "numpy==1.24.4",
+      "sacred==0.8.7"
+    ],
+    "mainfile": "exp.py",
+    "name": "default",
+    "repositories": [
+      {
+        "commit": "e1614dec2b36043ffb023b687d69113850d4098a",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      },
+      {
+        "commit": "e1614dec2b36043ffb023b687d69113850d4098a",
+        "dirty": true,
+        "url": "https://github.com/caihuaiguang/PIDCFR.git"
+      }
+    ],
+    "sources": [
+      [
+        "exp.py",
+        "_sources/exp_7b3b161a3e13b9d929853206a205bcd4.py"
+      ],
+      [
+        "utils.py",
+        "_sources/utils_94e651b1fb1a5c3373b8ee29e3b77fe0.py"
+      ]
+    ]
+  },
+  "heartbeat": "2025-06-20T14:08:14.600931",
+  "host": {
+    "ENV": {},
+    "cpu": "AMD EPYC 9654 96-Core Processor",
+    "hostname": "autodl-container-edfb41a5b4-b6f152c4",
+    "os": [
+      "Linux",
+      "Linux-5.4.0-155-generic-x86_64-with-glibc2.10"
+    ],
+    "python_version": "3.8.0"
+  },
+  "meta": {
+    "command": "main",
+    "config_updates": {
+      "algo_name": "PIDCFR",
+      "average": false,
+      "game_name": "GoofSpielImp4",
+      "iterations": 5000,
+      "save_log": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "game_name=GoofSpielImp4",
+        "algo_name=PIDCFR",
+        "iterations=5000",
+        "save_log=True",
+        "average=False"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-06-20T13:48:16.963234",
+  "status": "COMPLETED",
+  "stop_time": "2025-06-20T14:08:14.599730"
+}

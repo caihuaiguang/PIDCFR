@@ -1,5 +1,5 @@
-# Read the data.csv file for the 'last' case (38-2)
-# Read the data.csv file for the 'avg' case (38-1)
+# Read the data.csv file for the 'last' case (5-2)
+# Read the data.csv file for the 'avg' case (5-1)
 
 import os
 import pandas as pd
@@ -21,8 +21,8 @@ game_names = [
     "Battleship_22_3",
     "Battleship_32_3",
     "LeducPokerIso",
-    "Subgame3",
-    "Subgame4",
+    # "Subgame3",
+    # "Subgame4",
     # "SmallMatrix",
 ]
 
@@ -37,8 +37,8 @@ game_names_show = [
     "Battleship (2)",
     "Battleship (3)",
     "Leduc Poker",
-    "HUNL Subgame (3)",
-    "HUNL Subgame (4)",
+    # "HUNL Subgame (3)",
+    # "HUNL Subgame (4)",
 ]
 
 # List of methods
@@ -50,8 +50,8 @@ methods = [
     "DCFRPlus",
     "PCFRPlus",
     "PDCFRPlus",
-    # "PIDCFR",
-    "A2LCFR",
+    "PIDCFR",
+    # "A2LCFR",
 ]
 
 # Base directory
@@ -79,14 +79,14 @@ for idx_, game in enumerate(game_names):
             print(f"Directory for method {method} in game {game} does not exist.")
             continue
         
-        # Read the data.csv file for the 'last' case (38-2)
-        csv_file_last = os.path.join(method_dir, '38-2/data.csv')
+        # Read the data.csv file for the 'last' case (5-2)
+        csv_file_last = os.path.join(method_dir, '5-2/data.csv')
         if os.path.exists(csv_file_last):
             data_last = pd.read_csv(csv_file_last)
             data_dict_last[method] = data_last
         
-        # Read the data.csv file for the 'avg' case (38-1)
-        csv_file_avg = os.path.join(method_dir, '38-1/data.csv')
+        # Read the data.csv file for the 'avg' case (5-1)
+        csv_file_avg = os.path.join(method_dir, '5-1/data.csv')
         if os.path.exists(csv_file_avg):
             data_avg = pd.read_csv(csv_file_avg)
             data_dict_avg[method] = data_avg

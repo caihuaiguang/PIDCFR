@@ -1,0 +1,33 @@
+{
+  "algo_name": "PIDCFR",
+  "alpha": null,
+  "average": true,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "root",
+          "PIDCFR",
+          "results",
+          "GoofSpielImp4",
+          "PIDCFR"
+        ]
+      }
+    ]
+  },
+  "game_name": "GoofSpielImp4",
+  "gamma": null,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}

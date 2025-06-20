@@ -1,0 +1,33 @@
+{
+  "algo_name": "DCFRPlus",
+  "alpha": 1.5,
+  "average": false,
+  "beta": null,
+  "folder": {
+    "py/reduce": [
+      {
+        "py/type": "pathlib.PosixPath"
+      },
+      {
+        "py/tuple": [
+          "/",
+          "root",
+          "PIDCFR",
+          "results",
+          "LeducPokerIso",
+          "DCFRPlus"
+        ]
+      }
+    ]
+  },
+  "game_name": "LeducPokerIso",
+  "gamma": 4.0,
+  "iterations": 5000,
+  "save_log": true,
+  "seed": 0,
+  "writer_strings": [
+    "stdout",
+    "csv",
+    "sacred"
+  ]
+}
